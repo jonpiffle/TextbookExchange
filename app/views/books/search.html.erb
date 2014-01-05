@@ -1,0 +1,28 @@
+<%- model_class = Book -%>
+<div class="page-header">
+  <h1>Find Books</h1>
+</div>
+
+<table class="table table-striped display thumbnail" id="books" data-source="<%= search_url(format: "json")%>">
+  <thead>
+    <tr>
+      <th>Cover</th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:dept) %></th>
+      <th><%= model_class.human_attribute_name(:course_num) %></th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%=raw book.img_url.blank? ? "" : "<img src='#{book.img_url}'>" %></td>
+        <td><%= book.title %></td>
+        <td><%= book.title %></td>
+        <td><%= book.dept %></td>
+        <td><%= book.course_num %></td>
+        <td><%= book.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

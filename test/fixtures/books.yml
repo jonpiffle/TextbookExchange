@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  dept: MyString
+  course_num: MyString
+  amazon_url: MyString
+  isbn_10: MyString
+  isbn_13: MyString
+  author: MyString
+  publisher: MyString
+  edition: MyString
+  user_id: 1
+  notes: MyText
+  condition: MyString
+
+two:
+  title: MyString
+  dept: MyString
+  course_num: MyString
+  amazon_url: MyString
+  isbn_10: MyString
+  isbn_13: MyString
+  author: MyString
+  publisher: MyString
+  edition: MyString
+  user_id: 1
+  notes: MyText
+  condition: MyString

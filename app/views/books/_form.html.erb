@@ -1,0 +1,49 @@
+<script>
+  $(document).ready( function() {
+    $('#book_amazon_url').popover({'placement': 'right', 'trigger': 'manual'});
+    $('#book_amazon_url').popover('show');
+
+    $('#book_amazon_url').focus( function () {
+      $('#book_amazon_url').popover('destroy');
+    });
+  });
+</script>
+
+<%= form_for @book, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :amazon_url, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :amazon_url, :placeholder => "http://www.amazon.com/...", :class => 'text_field', :"data-toggle"=>"tooltip", :title=>"",  :"data-original-title"=>"Why do I need this?", :"data-content" => "Information about the textbook will be scraped from Amazon. If there are errors in the scraping, you will be able to edit it afterwards."%>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :dept, "Course", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :dept, Book::DEPARTMENTS, {}, :style => "width:101px;"%>
+      <%= f.text_field :course_num, :placeholder => "101", :style => "width:101px;", :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :condition, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :condition, Book::CONDITIONS %>
+    </div>
+  </div>
+   <div class="control-group">
+    <%= f.label :price, "Asking Price", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :price, :placeholder => "100.00", :class => 'text_field'%>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :notes, "Comments", :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :notes, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= f.submit "Add Book", :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                books_path, :class => 'btn' %>
+  </div>
+<% end %>
