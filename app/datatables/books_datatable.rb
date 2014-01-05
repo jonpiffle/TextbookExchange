@@ -37,7 +37,7 @@ private
     books = Book.order("#{sort_column} #{sort_direction}")
     books = books.page(page).per_page(per_page)
     if params[:sSearch].present?
-      books = books.where("title like :search or course_num like :search or dept like :search", search: "%#{params[:sSearch]}%")
+      books = books.where("lower(title) like :search or lower(course_num) like :search or lower(dept) like :search", search: "%#{params[:sSearch].downcase}%")
     end
     books
   end
