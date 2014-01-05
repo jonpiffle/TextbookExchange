@@ -28,13 +28,5 @@ Textbook::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :authentication => :plain,
-    :address => "smtp.mailgun.org",
-    :port => 587,
-    :domain => "sandbox30818.mailgun.org",
-    :user_name => "postmaster@sandbox30818.mailgun.org",
-    :password => "18rcbj5xdbb6"
-}
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
 end
