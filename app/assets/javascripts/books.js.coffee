@@ -5,6 +5,5 @@
 jQuery ->
   $('#books').dataTable
     sPaginationType: "bootstrap"
-    bProcessing: true
     bServerSide: true 
     sAjaxSource: $('#books').data('source')
