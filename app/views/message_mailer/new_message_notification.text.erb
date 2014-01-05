@@ -1,3 +1,8 @@
-MessageMailer#new_message_notification
+New Message on TextbookExchange
+====================================
 
-<%= @greeting %>, find me in app/views/app/views/message_mailer/new_message_notification.text.erb
+<%= @message.created_at.utc.strftime('%b %e, %l:%M %p') %> <%=@sender.email %>
+-----------------------------------------
+<%=@message.text%>
+
+<%=link_to "View on TextbookExchange" messages_path %>

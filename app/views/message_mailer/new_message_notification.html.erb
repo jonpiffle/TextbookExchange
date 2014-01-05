@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>New Message on TextbookExchange</h1>
+    <p><%= @message.created_at.utc.strftime('%b %e, %l:%M %p') %> <%=@sender.email %></p>
+    <hr>
+    <p><%=@message.text%></p>
+    <br>
+    <p><%=link_to "View on TextbookExchange" messages_path %></p>
+  </body>
+</html>
