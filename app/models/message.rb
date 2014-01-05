@@ -7,10 +7,7 @@ class Message < ActiveRecord::Base
 
 	def create_notification
 		Notification.create(:user_id => receiver.id, :message_id => self.id)
-		begin
-			MessageMailer.new_message_notification(self).deliver
-		rescue Exception
-		end
+		MessageMailer.new_message_notification(self).deliver
 	end
 
 	def preview
