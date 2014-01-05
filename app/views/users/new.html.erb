@@ -5,11 +5,9 @@
     <%= render :partial => '/users/form', :object => form %>
 
     <div class='submit-field'>
-      <%= form.submit %>
+      <%= form.submit "Submit", :class => "btn btn-primary" %><br>
+      <%= link_to "Already a user?", sign_in_path %>
     </div>
 
-    <div class='other-links'>
-      <%= link_to t('.sign_in'), sign_in_path %>
-    </div>
   <% end %>
 </div>
