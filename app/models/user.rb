@@ -6,7 +6,7 @@ include Clearance::User
 	has_many :notifications
 
 	def messages
-		Message.where("sender_id == ? or receiver_id == ?", self.id, self.id)
+		Message.where("sender_id = ? or receiver_id = ?", self.id, self.id)
 	end
 
 	def conversations
@@ -15,7 +15,7 @@ include Clearance::User
 	end
 
 	def conversation(user_id)
-		Message.where("sender_id == ? and receiver_id == ? or sender_id == ? and receiver_id == ?", self.id, user_id, user_id, self.id)
+		Message.where("sender_id = ? and receiver_id = ? or sender_id = ? and receiver_id = ?", self.id, user_id, user_id, self.id)
 	end
 
 	def notifications_with(user_id)
