@@ -3,7 +3,6 @@ Textbook::Application.routes.draw do
   get 'search' => 'books#search'
   get 'library/:id' => "books#library"
 
-  resources :notifications
   get 'destroy_notifications' => "notifications#destroy_all"
 
   resources :messages
@@ -14,6 +13,10 @@ Textbook::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
    root 'books#search'
+
+   get 'users/:id/edit' => "users#edit", :as => "edit_user"
+   post 'users/:id/edit' => "users#update", :as => "user"
+   patch 'users/:id/edit' => "users#update"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   def search
-    @books = Book.all
+    @books = Book.order(dept: :asc, course_num: :asc)
 
     respond_to do |format|
       format.html

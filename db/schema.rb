@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140105061555) do
+ActiveRecord::Schema.define(version: 20140106034352) do
 
   create_table "books", force: true do |t|
     t.string   "title"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20140105061555) do
     t.string   "encrypted_password", limit: 128
     t.string   "confirmation_token", limit: 128
     t.string   "remember_token",     limit: 128
+    t.boolean  "email_notification",             default: true
   end
 
   add_index "users", ["email"], name: "index_users_on_email"
