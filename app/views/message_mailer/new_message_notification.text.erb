@@ -3,7 +3,7 @@ New Message on TextbookExchange
 
 
 From: <%=@sender.email %>
-At: <%= @message.created_at.utc.strftime('%b %e, %l:%M %p') %> 
+At: <%= @message.created_at.localtime.strftime('%b %e, %l:%M %p') %> 
 Message: <%=@message.text%>
 
 -----------------------------------------
