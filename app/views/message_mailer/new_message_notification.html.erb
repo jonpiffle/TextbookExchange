@@ -7,7 +7,7 @@
     <h1>New Message on TextbookExchange</h1><br>
     <p>
       <strong>From:</strong> <%=@sender.email %><br>
-      <strong>At:</strong> <%= @message.created_at.utc.strftime('%b %e, %l:%M %p') %>
+      <strong>At:</strong> <%= @message.created_at.localtime.strftime('%b %e, %l:%M %p') %><br>
       <strong>Message:</strong> <%=@message.text%>
     </p>
     <br>

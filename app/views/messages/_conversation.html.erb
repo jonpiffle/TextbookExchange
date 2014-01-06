@@ -9,7 +9,7 @@
 	<%end%>
 		<%= message.sender.email %>
 		<div style="float:right;text-align:right;">
-			<%= message.created_at.utc.strftime('%b %e, %l:%M %p') %>
+			<%= message.created_at.localtime.strftime('%b %e, %l:%M %p') %>
 		</div>
 		</div><br>
         <%= message.text %></div>

@@ -21,7 +21,7 @@
             <% notifs = current_user.notifications_with(message.other_user(current_user)) %>
             <span class="badge badge-important"><%=notifs.count unless notifs.count == 0%></span>
           </td>
-          <td><%= message.created_at.utc.strftime('%b %e, %l:%M %p') %></td>
+          <td><%= message.created_at.localtime.strftime('%b %e, %l:%M %p') %></td>
           <td><%= message.sender.email %></td>
           <td><%= message.receiver.email %></td>
           <td><%= message.preview %></td>
