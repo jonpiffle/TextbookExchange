@@ -8,8 +8,8 @@
     <p>
       <strong>From:</strong> <%=@sender.email %><br>
       <strong>At:</strong> <%= @message.created_at.utc.strftime('%b %e, %l:%M %p') %>
+      <strong>Message:</strong> <%=@message.text%>
     </p>
-    <p><strong>Message:</strong> <%=@message.text%></p>
     <br>
     <hr>
     <p><%=link_to "View on TextbookExchange", messages_url %></p>
