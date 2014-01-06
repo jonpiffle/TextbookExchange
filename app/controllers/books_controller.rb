@@ -16,6 +16,11 @@ class BooksController < ApplicationController
     @books = current_user.books
   end
 
+  def library
+    @user = User.find(params[:id])
+    @books = @user.books
+  end
+
   # GET /books/1
   # GET /books/1.json
   def show

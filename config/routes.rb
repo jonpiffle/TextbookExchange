@@ -1,11 +1,13 @@
 Textbook::Application.routes.draw do
   resources :books
   get 'search' => 'books#search'
+  get 'library/:id' => "books#library"
 
   resources :notifications
   get 'destroy_notifications' => "notifications#destroy_all"
 
   resources :messages
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

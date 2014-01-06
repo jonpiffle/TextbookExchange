@@ -35,7 +35,12 @@
     <%= link_to "Edit", edit_book_path(@book), :class => 'btn' %>
     <%= link_to "Delete", book_path(@book), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
   <%else%>
+  <div class="alert alert-block alert-error">
+   <h4>Note:</h4>
+   This site does not handle payment. Message the owner to agree on transaction details.
+  </div>
     <button onclick="goBack()" class="btn">Back</button>
+    <%= link_to("Owner's Other Books", {:controller => "books", :action => "library", :id => @book.user_id}, {:class => 'btn btn-success'}) %>
     <%= link_to "Send Message to Owner", new_message_path(:receiver_id => @book.user_id), :class => "btn btn-primary"%>
   <%end%>
 </div>

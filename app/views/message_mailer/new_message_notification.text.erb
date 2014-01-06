@@ -4,8 +4,7 @@ New Message on TextbookExchange
 
 From: <%=@sender.email %>
 At: <%= @message.created_at.utc.strftime('%b %e, %l:%M %p') %> 
------------------------------------------
 Message: <%=@message.text%>
 
-
+-----------------------------------------
 <%=link_to "View on TextbookExchange", messages_url %>
