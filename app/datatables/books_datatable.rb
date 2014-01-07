@@ -24,6 +24,7 @@ private
         link_to(book.title, book),
         book.dept,
         book.course_num,
+        book.condition,
         number_to_currency(book.price)
       ]
     end
@@ -51,7 +52,7 @@ private
   end
 
   def sort_column
-    columns = %w[img_url title dept course_num price]
+    columns = %w[img_url title dept course_num condition price]
     columns[params[:iSortCol_0].to_i]
   end
 

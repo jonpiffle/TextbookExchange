@@ -10,6 +10,7 @@
       <th><%= model_class.human_attribute_name(:title) %></th>
       <th><%= model_class.human_attribute_name(:dept) %></th>
       <th><%= model_class.human_attribute_name(:course_num) %></th>
+      <th><%= model_class.human_attribute_name(:condition) %></th>
       <th><%= model_class.human_attribute_name(:price) %></th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
         <td><%= link_to(book.title, book)%></td>
         <td><%= book.dept %></td>
         <td><%= book.course_num %></td>
+        <td><%= book.condition %></td>
         <td><%= book.price %></td>
       </tr>
     <% end %>
