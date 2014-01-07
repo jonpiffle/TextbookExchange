@@ -365,8 +365,10 @@ class Book < ActiveRecord::Base
 	end
 
 	def parse_publisher(publisher_edition)
-		publisher = publisher_edition.match(/^(.*);/)[1]
-		edition = publisher_edition.match(/;\s(\w*)/)[1]
+		publisher_node = publisher_edition.match(/^(.*);/)
+		edition_node = publisher_edition.match(/;\s(\w*)/)
+		publisher = publisher_node && publisher_node.length >= 2 ? publisher_node[1] : nil
+		edition = edition_node && edition_node.length >= 2 ? edition_node[1] : nil
 		return publisher, edition
 	end
 

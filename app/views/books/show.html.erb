@@ -5,7 +5,7 @@
 
 <% if @book.user == current_user %>
   <div class="alert alert-error text-center">
-    Scraped information incorrect? Click "Edit" to update it manually.
+    Incorrect scraped information? Click "Edit Info" to update it manually.
   </div>
 <% end %>
 
@@ -36,8 +36,9 @@
 
 <div class="form-actions">
   <% if @book.user == current_user %>
+    <%= link_to "Add Another Book", new_book_path, :class => 'btn btn'  %>
     <%= link_to "Back to Library", books_path, :class => 'btn'  %>
-    <%= link_to "Edit", edit_book_path(@book), :class => 'btn' %>
+    <%= link_to "Edit Info", edit_book_path(@book), :class => 'btn' %>
     <%= link_to "Delete", book_path(@book), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
   <%else%>
   <div class="alert alert-block alert-error">
