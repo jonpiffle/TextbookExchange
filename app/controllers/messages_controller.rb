@@ -17,6 +17,8 @@ class MessagesController < ApplicationController
     @receiver = User.find(params[:receiver_id])
     @message = current_user.sent_messages.build(:receiver_id => @receiver.id)
     @conversation = current_user.conversation(@receiver.id)
+    book = params[:book_id] ? Book.find(params[:book_id]) : nil
+    @preview = book ? "I want to buy your #{book.course} book!" : ""
     notifications = current_user.notifications_with(@receiver.id)
     notifications.each {|n| n.destroy }
   end
@@ -73,6 +75,6 @@ class MessagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
-      params.require(:message).permit(:sender_id, :receiver_id, :text)
+      params.require(:message).permit(:sender_id, :receiver_id, :text, :book_id)
     end
 end

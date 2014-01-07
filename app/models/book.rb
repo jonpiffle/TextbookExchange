@@ -316,8 +316,18 @@ class Book < ActiveRecord::Base
 		"Used - Like New",
 		"Used - Very Good",
 		"Used - Good",
-		"Used - Acceptable"
+		"Used - Acceptable",
+		"Used - Poor"
 	]
+
+
+	def preview
+		title.truncate(30)
+	end
+
+	def course
+		"#{dept} #{course_num}"
+	end
 
 	private
 

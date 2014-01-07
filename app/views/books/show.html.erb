@@ -41,6 +41,6 @@
   </div>
     <button onclick="goBack()" class="btn">Back</button>
     <%= link_to("Owner's Other Books", {:controller => "books", :action => "library", :id => @book.user_id}, {:class => 'btn btn-success'}) %>
-    <%= link_to "Send Message to Owner", new_message_path(:receiver_id => @book.user_id), :class => "btn btn-primary"%>
+    <%= link_to "Send Message to Owner", new_message_path(:receiver_id => @book.user_id, :book_id => @book.id), :class => "btn btn-primary"%>
   <%end%>
 </div>

@@ -16,7 +16,7 @@ class Message < ActiveRecord::Base
 	end
 
 	def preview
-		self.text.slice(0,30)
+		self.text.truncate(30)
 	end
 
 	def other_user(user)
