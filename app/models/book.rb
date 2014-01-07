@@ -73,7 +73,6 @@ class Book < ActiveRecord::Base
 		"DSPR",
 		"DSRE",
 		"EBME",
-		"ECES",
 		"ECHE",
 		"ECIV",
 		"ECMP",

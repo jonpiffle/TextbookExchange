@@ -3,6 +3,11 @@
   <h1>Book Info</h1>
 </div>
 
+<% if @book.user == current_user %>
+  <div class="alert alert-error text-center">
+    Scraped information incorrect? Click "Edit" to update it manually.
+  </div>
+<% end %>
 
 <table style="text-align:top;">
   <colgroup>
