@@ -332,6 +332,15 @@ class Book < ActiveRecord::Base
 
 	def scrape_amazon
 		return if amazon_url.blank?
+
+		isbn_10 = ""
+		isbn_13 = ""
+		publisher = ""
+		edition = ""
+		title = ""
+		author = ""
+		img_url = ""
+
 		begin
 			url = amazon_url.gsub(/ref=.*/, "")
 			page = Nokogiri::HTML(open(url)) 
@@ -342,9 +351,10 @@ class Book < ActiveRecord::Base
 			publisher_edition = get_attr(info_div, "Publisher")
 			publisher, edition = parse_publisher(publisher_edition)
 			title = page.xpath('//span[@id="btAsinTitle"]').text
-			author = page.xpath('//div[@class="buying"]')[3].children.search("a").map(&:text).join(", ")
+			author = page.xpath('//div[@class="buying"]/span//a').map(&:text).join(", ")
 			img_url = page.xpath('//img[@id="main-image"]').first.attributes['src'].value
-
+		rescue Exception
+		ensure
 			self.update_attributes(
 				:title => title,
 				:publisher => publisher,
@@ -354,7 +364,6 @@ class Book < ActiveRecord::Base
 				:isbn_13 => isbn_13,
 				:img_url => img_url
 			)
-		rescue Exception
 		end
 	end
 
