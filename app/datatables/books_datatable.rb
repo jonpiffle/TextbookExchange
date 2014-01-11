@@ -52,7 +52,7 @@ private
   end
 
   def sort_column
-    columns = %w[img_url title dept course_num condition price]
+    columns = %w[dept course_num condition price title]
     columns[params[:iSortCol_0].to_i]
   end
 
