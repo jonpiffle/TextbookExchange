@@ -1,0 +1,12 @@
+New Message on TextbookExchange
+\====================================
+
+
+From: #{@sender.email}
+At: #{@message.created_at.localtime.strftime('%b %e, %l:%M %p')}
+Message: #{@message.text}
+
+\-----------------------------------------
+\#{link_to "View on TextbookExchange", messages_url}
+
+To turn off emails, go to TextbookExchange, click on your email address, and uncheck "Email Notifications"

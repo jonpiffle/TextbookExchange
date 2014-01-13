@@ -1,0 +1,11 @@
+:javascript
+  location.href = "#bottom";
+- model_class = Message
+.page-header
+  %h3
+    Conversation with #{@receiver.email}
+.block
+  .centered
+    = render :partial => 'conversation' if !@conversation.blank?
+    = render :partial => 'form'
+%span#bottom

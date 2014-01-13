@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+  %body
+    %h1 New Message on TextbookExchange
+    %br/
+    %p
+      %strong From:
+      = @sender.email
+      %br/
+      %strong At:
+      = @message.created_at.localtime.strftime('%b %e, %l:%M %p')
+      %br/
+      %strong Message:
+      = @message.text
+    %br/
+    %hr/
+    %p= link_to "View on TextbookExchange", messages_url
+    %p To turn off emails, go to TextbookExchange, click on your email address, and uncheck "Email Notifications"

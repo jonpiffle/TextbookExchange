@@ -1,0 +1,25 @@
+- model_class = Message
+.page-header
+  %h1 Conversations
+- if @conversations.length > 0
+  %table.table.table-striped
+    %thead
+      %tr
+        %th
+        %th Last Message
+        %th From
+        %th To
+        %th Preview
+    %tbody
+      - @conversations.each do |message|
+        %tr.linkify{:onclick => "window.location.href = '#{new_message_path(message, :receiver_id => message.other_user(current_user).id)}';"}
+          %td
+            - notifs = current_user.notifications_with(message.other_user(current_user))
+            %span.badge.badge-important= notifs.count unless notifs.count == 0
+          %td= message.created_at.localtime.strftime('%b %e, %l:%M %p')
+          %td= message.sender.email
+          %td= message.receiver.email
+          %td= message.preview
+- else
+  .alert.alert-block.text-center
+    You haven't sent or received any messages.

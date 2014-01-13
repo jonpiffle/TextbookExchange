@@ -1,0 +1,8 @@
+= form_for @message, :html => { :class => 'form-horizontal' } do |f|
+  = f.hidden_field :receiver_id, :class => 'text_field'
+  = f.text_area :text, :class => 'text_field sent', :placeholder => "New Message", :value => @preview
+  .clearfix
+  %br/
+  %div{:style => "text-align:right; "}
+    = f.submit "Send Message", :class => 'btn btn-primary'
+    = link_to "Cancel", messages_path, :class => 'btn'

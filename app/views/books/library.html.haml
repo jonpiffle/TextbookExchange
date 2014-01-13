@@ -1,0 +1,25 @@
+- model_class = Book
+.page-header
+  %h1
+    = @user.email
+    's Library
+%table.table.table-striped.display.thumbnail
+  %thead
+    %tr
+      %th Cover
+      %th= model_class.human_attribute_name(:title)
+      %th= model_class.human_attribute_name(:dept)
+      %th= model_class.human_attribute_name(:course_num)
+      %th= model_class.human_attribute_name(:condition)
+      %th= model_class.human_attribute_name(:price)
+  %tbody
+    - @books.each do |book|
+      %tr
+        %td= raw book.img_url.blank? ? "" : "<img src='#{book.img_url}'>"
+        %td= link_to(book.title, book)
+        %td= book.dept
+        %td= book.course_num
+        %td= book.condition
+        %td= book.price
+%br/
+= link_to "Back to Search", search_path, :class=>"btn"
