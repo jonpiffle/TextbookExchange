@@ -1,5 +1,6 @@
 require 'open-uri'
 require 'nokogiri'
+require_relative 'amazon_book_scraper'
 
 class Book < ActiveRecord::Base
 	belongs_to :user
@@ -351,7 +352,7 @@ class Book < ActiveRecord::Base
 			publisher_edition = get_attr(info_div, "Publisher")
 			publisher, edition = parse_publisher(publisher_edition)
 			title = page.xpath('//span[@id="btAsinTitle"]').text
-			author = page.xpath('//div[@class="buying"]/span//a').map(&:text).join(", ")
+			author = AmazonBookScraper::author(page) # use the AmazonBookScraper to get the author
 			img_url = page.xpath('//img[@id="main-image"]').first.attributes['src'].value
 		rescue Exception
 		ensure
