@@ -1,5 +1,3 @@
-require 'open-uri'
-require 'nokogiri'
 require_relative 'amazon_book_scraper'
 
 class Book < ActiveRecord::Base
@@ -333,53 +331,9 @@ class Book < ActiveRecord::Base
 
 	def scrape_amazon
 		return if amazon_url.blank?
+		
+		url = amazon_url.gsub(/ref=.*/, "")
 
-		isbn_10 = ""
-		isbn_13 = ""
-		publisher = ""
-		edition = ""
-		title = ""
-		author = ""
-		img_url = ""
-
-		begin
-			url = amazon_url.gsub(/ref=.*/, "")
-			page = Nokogiri::HTML(open(url)) 
-			h2 = page.xpath("//h2[text()='Product Details']").first()
-			info_div = h2.next_element()
-			isbn_10 =  get_attr(info_div, "ISBN-10")
-			isbn_13 =  get_attr(info_div, "ISBN-13")
-			publisher_edition = get_attr(info_div, "Publisher")
-			publisher, edition = parse_publisher(publisher_edition)
-			title = page.xpath('//span[@id="btAsinTitle"]').text
-			author = AmazonBookScraper::author(page) # use the AmazonBookScraper to get the author
-			img_url = page.xpath('//img[@id="main-image"]').first.attributes['src'].value
-		rescue Exception
-		ensure
-			self.update_attributes(
-				:title => title,
-				:publisher => publisher,
-				:edition => edition,
-				:author => author,
-				:isbn_10 => isbn_10,
-				:isbn_13 => isbn_13,
-				:img_url => img_url
-			)
-		end
+		self.update_attributes(AmazonBookScraper::scrape(url))
 	end
-
-	def get_attr(div, attribute)
-		title_nodes = div.search("b[text()='#{attribute}:']")
-		title = title_nodes ? title_nodes.first : nil
-		text = title ? title.next.text[1..-1] : nil
-	end
-
-	def parse_publisher(publisher_edition)
-		publisher_node = publisher_edition.match(/^(.*);/)
-		edition_node = publisher_edition.match(/;\s(\w*)/)
-		publisher = publisher_node && publisher_node.length >= 2 ? publisher_node[1] : nil
-		edition = edition_node && edition_node.length >= 2 ? edition_node[1] : nil
-		return publisher, edition
-	end
-
 end
