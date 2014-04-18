@@ -1,5 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
+require_relative 'string'
 
 class AmazonBookScraper
 	# returns a hash containing the book attributes
@@ -66,7 +67,11 @@ class AmazonBookScraper
 	# publisher_edition -> <publisher>; <edition> edition <publish-date>
 	def self.publisher_edition_parse publisher_edition
 		sections = publisher_edition.split('; ')
-		publisher, edition = sections[0], sections[1].split(' ')[0]
+		if sections.size > 1
+			publisher, edition = sections[0], sections[1].split(' ')[0].ordinate
+		else
+			publisher, edition = sections[0], ""
+		end
 	end
 
 	def self.title page
