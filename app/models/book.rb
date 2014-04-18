@@ -334,6 +334,16 @@ class Book < ActiveRecord::Base
 		
 		url = amazon_url.gsub(/ref=.*/, "")
 
-		self.update_attributes(AmazonBookScraper::scrape(url))
+		book = AmazonBookScraper::scrape(url)
+
+		self.update_attributes(
+				:title => book[:title],
+				:publisher => book[:publisher],
+				:edition => book[:edition],
+				:author => book[:author],
+				:isbn_10 => book[:isbn_10],
+				:isbn_13 => book[:isbn_13],
+				:img_url => book[:img_url]
+			)
 	end
 end
